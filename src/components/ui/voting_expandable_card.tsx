@@ -4,7 +4,7 @@ import React, { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "../../app/hooks/use-outside-click";
 import { cn } from "../../lib/utils";
-
+import Image from "next/image";
 
 
 interface Card {
@@ -70,7 +70,7 @@ export function VotingExpandableCard({ cards }: { cards: Card[] }) {
               className="w-full max-w-[500px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
             >
               <motion.div layoutId={`image-${active.title}-${id}`}>
-                <img
+                <Image
                   src={active.src}
                   alt={active.title}
                   className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
@@ -116,7 +116,7 @@ export function VotingExpandableCard({ cards }: { cards: Card[] }) {
           >
             <div className="flex gap-4 items-center">
               <motion.div layoutId={`image-${card.title}-${id}`}>
-                <img
+                <Image
                   src={card.src}
                   alt={card.title}
                   className="h-14 w-14 rounded-lg object-cover"

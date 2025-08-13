@@ -1,8 +1,9 @@
 'use client';
 
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { motion, AnimatePresence } from "framer-motion"; // use framer-motion instead of "motion/react"
-import { useEffect, useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState, useMemo, useCallback } from "react";
+import Image from "next/image";
 
 type Testimonial = {
   quote: string;
@@ -20,32 +21,33 @@ export const AnimatedTestimonials = ({
 }) => {
   const [active, setActive] = useState(0);
 
-  const handleNext = () => {
+  // Memoized handlers to prevent re-creation on each render
+  const handleNext = useCallback(() => {
     setActive((prev) => (prev + 1) % testimonials.length);
-  };
+  }, [testimonials.length]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  }, [testimonials.length]);
 
   const isActive = (index: number) => index === active;
 
+  // Autoplay logic
   useEffect(() => {
     if (autoplay) {
       const interval = setInterval(handleNext, 5000);
       return () => clearInterval(interval);
     }
-  }, [autoplay]);
+  }, [autoplay, handleNext]);
 
-const [rotateMap, setRotateMap] = useState<number[] | null>(null);
+  const [rotateMap, setRotateMap] = useState<number[] | null>(null);
 
-useEffect(() => {
-  const map = testimonials.map(() => Math.floor(Math.random() * 21) - 10);
-  setRotateMap(map);
-}, [testimonials]);
+  useEffect(() => {
+    const map = testimonials.map(() => Math.floor(Math.random() * 21) - 10);
+    setRotateMap(map);
+  }, [testimonials]);
 
-if (!rotateMap) return null;
-
+  if (!rotateMap) return null;
 
   return (
     <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
@@ -84,7 +86,7 @@ if (!rotateMap) return null;
                   }}
                   className="absolute inset-0 origin-bottom text-white"
                 >
-                  <img
+                  <Image
                     src={testimonial.src}
                     alt={testimonial.name}
                     width={500}

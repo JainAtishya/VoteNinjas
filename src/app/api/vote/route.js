@@ -3,7 +3,7 @@ export const runtime = 'nodejs';
 import clientPromise from "../../../lib/mongodb";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "../../../lib/authOptions";
 import { ObjectId } from "mongodb";
 
 export async function POST(request) {

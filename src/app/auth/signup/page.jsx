@@ -14,7 +14,7 @@ export default function SignUpPage() {
     contactNumber: "",
   });
   const [otp, setOtp] = useState("");
-  const [step, setStep] = useState(1); // 1 for details, 2 for OTP
+  const [step, setStep] = useState(1); 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isLoading, setIsLoading] = useState(false);
