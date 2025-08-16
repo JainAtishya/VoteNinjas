@@ -1,5 +1,6 @@
 // src/components/Footer.tsx
 import React from 'react';
+import Link from 'next/link';
 import { FaGithub, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 export const Footer = () => {
@@ -18,10 +19,10 @@ export const Footer = () => {
         <div>
           <h3 className="text-black dark:text-white font-bold text-lg mb-4">Quick Links</h3>
           <ul className="space-y-2 text-sm">
-            <li><a href="/events" className="hover:text-black dark:hover:text-white">Events</a></li>
-            <li><a href="/leaderboard" className="hover:text-black dark:hover:text-white">Leaderboard</a></li>
-            <li><a href="/results" className="hover:text-black dark:hover:text-white">Results</a></li>
-            <li><a href="/auth/signin" className="hover:text-black dark:hover:text-white">Sign In</a></li>
+            <li><Link href="/events" className="hover:text-black dark:hover:text-white">Events</Link></li>
+            <li><Link href="/leaderboard" className="hover:text-black dark:hover:text-white">Leaderboard</Link></li>
+            <li><Link href="/results" className="hover:text-black dark:hover:text-white">Results</Link></li>
+            <li><Link href="/auth/signin" className="hover:text-black dark:hover:text-white">Sign In</Link></li>
           </ul>
         </div>
 

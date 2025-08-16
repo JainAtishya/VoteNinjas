@@ -1,6 +1,5 @@
 "use client";
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
-
 import { encode } from "qss";
 import React from "react";
 import {
@@ -55,7 +54,6 @@ export const LinkPreview = ({
   }
 
   const [isOpen, setOpen] = React.useState(false);
-
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -64,42 +62,37 @@ export const LinkPreview = ({
 
   const springConfig = { stiffness: 100, damping: 15 };
   const x = useMotionValue(0);
-
   const translateX = useSpring(x, springConfig);
 
   const handleMouseMove = (event: any) => {
-    const targetRect = event.target.getBoundingClientRect();
+    const targetRect = event.currentTarget.getBoundingClientRect();
     const eventOffsetX = event.clientX - targetRect.left;
-    const offsetFromCenter = (eventOffsetX - targetRect.width / 2) / 2; // Reduce the effect to make it subtle
+    const offsetFromCenter =
+      (eventOffsetX - targetRect.width / 2) / 2; // Subtle effect
     x.set(offsetFromCenter);
   };
 
   return (
     <>
-      {isMounted ? (
-        <div className="hidden">
-          <Image
-            src={src}
-            width={width}
-            height={height}
-            alt="hidden image"
-          />
-        </div>
-      ) : null}
+      {/* Preload image outside of any <p> to avoid invalid nesting */}
+      {isMounted && (
+        <span className="hidden" aria-hidden="true">
+          <Image src={src} width={width} height={height} alt="" />
+        </span>
+      )}
 
       <HoverCardPrimitive.Root
         openDelay={50}
         closeDelay={100}
-        onOpenChange={(open) => {
-          setOpen(open);
-        }}
+        onOpenChange={(open) => setOpen(open)}
       >
         <HoverCardPrimitive.Trigger
           onMouseMove={handleMouseMove}
           className={cn("text-black dark:text-white", className)}
-          href={url}
+          asChild
         >
-          {children}
+          {/* asChild ensures children aren’t wrapped in extra <button>/<span> */}
+          <a href={url}>{children}</a>
         </HoverCardPrimitive.Trigger>
 
         <HoverCardPrimitive.Content
@@ -124,13 +117,11 @@ export const LinkPreview = ({
                 }}
                 exit={{ opacity: 0, y: 20, scale: 0.6 }}
                 className="shadow-xl rounded-xl"
-                style={{
-                  x: translateX,
-                }}
+                style={{ x: translateX }}
               >
                 <a
                   href={url}
-                  className="block p-1 bg-white border-2 border-transparent shadow rounded-xl hover:border-neutral-200 dark:hover:border-neutral-800"
+                  className="block p-1 bg-gray-50 dark:bg-neutral-900 border-2 border-transparent shadow rounded-xl hover:border-neutral-200 dark:hover:border-neutral-800"
                   style={{ fontSize: 0 }}
                 >
                   <Image

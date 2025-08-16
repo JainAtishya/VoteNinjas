@@ -9,3 +9,13 @@
 html, body {
   overflow-x: hidden;
 }
+
+/* Light mode background */
+html {
+  @apply bg-gray-50;
+}
+
+/* Dark mode background */
+html.dark {
+  @apply bg-gray-900;
+}

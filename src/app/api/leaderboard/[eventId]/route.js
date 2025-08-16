@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
 
 export async function GET(request, { params }) {
-    const { eventId } = params;
+    const { eventId } = await params;
 
     try {
         const client = await clientPromise;

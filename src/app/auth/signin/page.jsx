@@ -15,28 +15,22 @@ export default function SignInPage() {
 
   const testimonials = [
     {
-      quote: "This platform is amazing! It's so easy to use and has helped me a lot.",
-      name: "Vishesh",
-      designation: "Developer",
-      src: "https://wallpapers.com/images/featured/anime-boy-dark-oltg2lztxcu00bec.jpg",
-    },
-    {
-      quote: "I love the user interface. It's clean, modern, and intuitive.",
-      name: "Vishesh",
-      designation: "Designer",
-      src: "https://img.freepik.com/premium-vector/vector-young-man-animestyle-character-vector-illustration-design-manga-anime-boy_147933-12515.jpg?semt=ais_hybrid&w=740",
-    },
-    {
-      quote: "I love the user interface. It's clean, modern, and intuitive.",
-      name: "Vishesh",
-      designation: "Engineer",
+      quote: "Building this voting platform has been an incredible journey. The seamless user experience and robust backend make every vote count!",
+      name: "Atishya Jain",
+      designation: "Full Stack Developer",
       src: "https://media.craiyon.com/2025-04-12/pyJGEfq0T--2bGrq-WHFFQ.webp",
     },
     {
-      quote: "I love the user interface. It's clean, modern, and intuitive.",
+      quote: "This platform showcases the power of modern web development. Clean code, beautiful design, and flawless functionality!",
       name: "Vishesh",
-      designation: "Bug Hunter",
-      src: "https://images.steamusercontent.com/ugc/965355694153811922/DF6B86B28B17363E7529D2980F1580D221B2B96D/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false",
+      designation: "Backend Developer",
+      src: "https://img.freepik.com/premium-vector/vector-young-man-animestyle-character-vector-illustration-design-manga-anime-boy_147933-12515.jpg?semt=ais_hybrid&w=740",
+    },
+    {
+      quote: "From concept to deployment, every feature was crafted with precision. Proud to be part of this innovative coding community!",
+      name: "Aryan",
+      designation: "Frontend Developer",
+      src: "https://wallpapers.com/images/featured/anime-boy-dark-oltg2lztxcu00bec.jpg",
     },
   ];
 

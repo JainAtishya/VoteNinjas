@@ -8,7 +8,7 @@ export async function PUT(request, {params}){
     if(adminCheck) return adminCheck;
 
     try{
-        const {eventId} = params;
+        const {eventId} = await params;
         const {userIds} = await request.json();
 
         const client = await clientPromise;

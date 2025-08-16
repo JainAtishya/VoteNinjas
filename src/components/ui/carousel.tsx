@@ -82,29 +82,30 @@ const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
         }}
       >
         <div
-          className="absolute top-0 left-0 w-full h-full bg-[#1D1F2F] rounded-[1%] overflow-hidden transition-all duration-150 ease-out"
-          style={{
-            transform:
-              current === index
-                ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)"
-                : "none",
-          }}
-        >
-          <Image
-            className="absolute inset-0 w-[120%] h-[120%] object-cover opacity-100 transition-opacity duration-600 ease-in-out"
-            style={{
-              opacity: current === index ? 1 : 0.5,
-            }}
-            alt={title}
-            src={src}
-            onLoad={imageLoaded}
-            loading="eager"
-            decoding="sync"
-          />
-          {current === index && (
-            <div className="absolute inset-0 bg-black/30 transition-all duration-1000" />
-          )}
-        </div>
+  className="absolute top-0 left-0 w-full h-full bg-[#1D1F2F] rounded-[1%] overflow-hidden transition-all duration-150 ease-out relative"
+  style={{
+    transform:
+      current === index
+        ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)"
+        : "none",
+  }}
+>
+  <Image
+    fill
+    className="object-cover opacity-100 transition-opacity duration-600 ease-in-out"
+    style={{
+      opacity: current === index ? 1 : 0.5,
+    }}
+    alt={title}
+    src={src}
+    onLoad={imageLoaded}
+    loading="eager"
+    decoding="sync"
+  />
+  {current === index && (
+    <div className="absolute inset-0 bg-black/30 transition-all duration-1000" />
+  )}
+</div>
 
         <article
           className={`relative p-[4vmin] transition-opacity duration-1000 ease-in-out ${

@@ -44,18 +44,24 @@ export async function POST(request) {
             return NextResponse.json({ error: "You have already voted in this event." }, { status: 409 });
         }
 
+        // Get user details to determine vote weight
+        const user = await db.collection("users").findOne({ _id: new ObjectId(userId) });
+        const voteWeight = user?.role === 'admin' ? (event.defaultVoteWeight || 5) : 1;
+
         // Record the vote
         await db.collection("votes").insertOne({
             userId: userId,
             candidateId: new ObjectId(candidateId),
             eventId: eventObjectId,
             votedAt: new Date(),
+            weight: voteWeight,
+            voterRole: user?.role || 'user'
         });
 
-        // Increment vote count on the candidate
+        // Increment vote count on the candidate (weighted)
         await db.collection("candidates").updateOne(
             { _id: new ObjectId(candidateId), eventId: eventObjectId },
-            { $inc: { votes: 1 } }
+            { $inc: { votes: 1, weightedVotes: voteWeight } }
         );
 
         return NextResponse.json({ message: "Vote successful" });
