@@ -283,7 +283,7 @@ export default function LandingPage() {
               Meet Our Team
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300">
-              The brilliant minds behind Coding Ninja club's innovative projects
+              The brilliant minds behind Coding Ninja club&apos;s innovative projects
             </p>
           </motion.div>
 
